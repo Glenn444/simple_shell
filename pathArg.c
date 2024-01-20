@@ -11,21 +11,24 @@ char *concatenateArguments(char **argv)
 	int totalLength = 0;
 	int numArguments = 0;
 	char *file_path = find_file(filename, path);
+	int i;
+	int spacesLength;
+	char *concatenated;
 
 	while (argv[numArguments] != NULL)
 	{
 		totalLength += strlength(argv[numArguments]);
 		numArguments++;
 	}
-	int spacesLength = numArguments - 1;
-	char *concatenated = malloc(totalLength + spacesLength + 1);
+	spacesLength = numArguments - 1;
+	concatenated = malloc(totalLength + spacesLength + 1);
 
 	concatenated[0] = '\0';
 	if (file_path)
 	{
 		strcat(concatenated, file_path);
 		strcat(concatenated, " ");
-		for (int i = 1; i < numArguments; i++)
+		for (i = 1; i < numArguments; i++)
 		{
 			strcat(concatenated, argv[i]);
 
@@ -35,7 +38,7 @@ char *concatenateArguments(char **argv)
 	}
 	else
 	{
-		for (int i = 0; i < numArguments; i++)
+		for (i = 0; i < numArguments; i++)
 		{
 			strcat(concatenated, argv[i]);
 			if (i < numArguments - 1)

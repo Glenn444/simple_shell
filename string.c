@@ -82,12 +82,15 @@ char *strngcpy(char *dest, const char *src)
  */
 char *strngdup(const char *str)
 {
+	size_t len;
+	char *dup;
+
 	if (str == NULL)
 	{
 		return (NULL);
 	}
-	size_t len = strlength(str) + 1;
-	char *dup = malloc(len);
+	len = strlength(str) + 1;
+	dup = malloc(len);
 
 	if (dup != NULL)
 	{

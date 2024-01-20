@@ -8,11 +8,19 @@ void shell(void)
 {
 	while (1)
 	{
-		write(1, "($): ", 5);
-		char *command = NULL;
-		size_t n = 0;
-		int num_read = 0;
+		char *command;
+		size_t n;
+		int num_read;
+		char **argv;
+		char *path;
+		char **argv1;
+		pid_t child_pid;
+		int status;
 
+		write(1, "($): ", 5);
+		command = NULL;
+		n = 0;
+		num_read = 0;
 		num_read = getline(&command, &n, stdin);
 		if (num_read == -1)
 		{
@@ -24,13 +32,11 @@ void shell(void)
 			free(command);
 			break;
 		}
-		char **argv = tokenize(command, " \n\t");
-		char *path = concatenateArguments(argv);
-		char **argv1 = tokenize(path, " \n\t");
+		argv = tokenize(command, " \n\t");
+		path = concatenateArguments(argv);
+		argv1 = tokenize(path, " \n\t");
 
-		pid_t child_pid = fork();
-		int status;
-
+		child_pid = fork();
 		if (child_pid == -1)
 		{
 			perror("Error");

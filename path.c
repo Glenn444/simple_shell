@@ -6,9 +6,11 @@
  */
 char *getenv_custom(const char *name)
 {
-	size_t name_len = strlength(name);
-
-	for (char **env = environ; *env != NULL; ++env)
+	char **env;
+	size_t name_len;
+	
+	name_len = strlength(name);
+	for (env = environ; *env != NULL; ++env)
 	{
 		if (strncmp(*env, name, name_len) == 0 && (*env)[name_len] == '=')
 			return (&((*env)[name_len + 1]));

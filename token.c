@@ -12,6 +12,7 @@ char **tokenize(char *command, char *delim)
 	char *cpyCommand2 = strngdup(command);
 	int num_tokens = 0;
 	char *token = strtok(cpyCommand, delim);
+	int i;
 
 	while (token != NULL)
 	{
@@ -20,7 +21,7 @@ char **tokenize(char *command, char *delim)
 	}
 	argv = malloc((num_tokens + 1) * sizeof(char *));
 	token = strtok(cpyCommand2, delim);
-	int i = 0;
+	i = 0;
 
 	while (token != NULL)
 	{
