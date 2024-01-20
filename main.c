@@ -1,24 +1,10 @@
-#include <stdio.h>
-#include "path_handler.h"
-#include "command_executer.h"
-
+#include "shell.h"
 /**
- * main - Entry point of the program
- *
- * Contains the main loop of the shell, user handling, and invoking functions
- * from other files based on user commands
- *
- * Return: Always 0 (Success)
+ * main - start of execution of shell
+ * Return: 0
  */
-
 int main(void)
 {
-	char command[256];
-
-	printf("Enter a command:");
-	fgets(command, sizeof(command), stdin);
-
-	handle_path(command);
-
+	shell();
 	return (0);
 }
